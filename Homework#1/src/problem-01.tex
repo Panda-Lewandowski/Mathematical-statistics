@@ -1,0 +1,42 @@
+% !TEX root = main.tex
+
+\section{Задача №1. Предельные теоремы теории вероятностей}
+
+\paragraph{Условие.} За значение некоторой величины принимают среднее арифметическое $500$ измерений. Предполагая, что среднее квадратичное отклонение возможных результатов каждого измерения не превосходит $0.5$, оценить вероятность того, что отклонение найденного таким образом значения величины от истинного не превосходит $0.2$.
+
+\paragraph{Решение.}\hfill\\
+Предположим, что истинное значение величины равно $X_{real}.$ Тогда измеренное значение величины
+ \[
+ 	X = \frac{1}{n}\sum_{i=1}^n X_{i}, где n=500. 
+\]
+\\
+Обозначим также отклонение от истинного за $\varepsilon$, дисперсию каждого измерения за 
+\[
+	\Variance X_{i}=\sigma^2=0.5^2=0.25.
+\]
+\\
+Необходимо найти 
+\[
+    \Prob\{|X-X_{real}| < \varepsilon\} =  \Prob \Bigl\{-\varepsilon < \frac{X_{1}+ ... + X_{n} - nX_{real}}{n} < \varepsilon \Bigl\} = 
+ \]
+\[
+    = \Prob\Bigl\{--\varepsilon  \sqrt{\frac{n}{\sigma^2}} < \frac{X_{1}+ ... + X_{n} - nX_{real}}{\sqrt{n\sigma^2}} < \varepsilon  \sqrt{\frac{n}{\sigma^2}}\Bigl\} .
+ \]
+ \\
+ Так как $n >> 1$, то мы можем использовать \emph{Центральную предельную теорему}, согласно которой величина $\frac{X_{1}+ ... + X_{n} - nX_{real}}{\sqrt{n\sigma^2}}$ распределена по нормальному закону. Тогда
+ \[
+	\Prob\{|X-X_{real}| < \varepsilon\} \approx \Phi \left(\varepsilon \sqrt{\frac{n}{\sigma^2}}\right) - \Phi \left(- \varepsilon \sqrt{\frac{n}{\sigma^2}}\right) =
+	2\Phi_{o} \left(\varepsilon \sqrt{\frac{n}{\sigma^2}}\right) = 
+ \]
+ 
+ \[
+  = 2\Phi_{o} \left(0.2 \sqrt{\frac{500}{0.25}}\right) = 2\Phi_{o} \left( 8.9 \right)  ????
+ \]
+ 		
+ 
+
+
+
+\noindent
+
+\paragraph{Ответ.} .
