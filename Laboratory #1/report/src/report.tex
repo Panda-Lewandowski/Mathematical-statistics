@@ -1,0 +1,147 @@
+% !TEX root = main.tex
+
+\section{Отчёт}
+
+\subsection{Формулы для вычисления величин}
+
+\paragraph{Количество интервалов}
+\begin{equation}
+m = [\log_2 n] + 2
+\end{equation}
+
+
+\paragraph{Минимальное значение выборки}
+
+\begin{equation}
+    M_{\min} = \min \{ x_1, \dots, x_n\}, \quad \text{где}
+\end{equation}
+\begin{itemize}
+    \item $(x_1, \dots, x_n)$ --- реализация случайной выборки.
+\end{itemize}
+
+
+\paragraph{Максимальное значение выборки}
+
+\begin{equation}
+    M_{\max} = \max \{ x_1, \dots, x_n\}, \quad \text{где}
+\end{equation}
+\begin{itemize}
+    \item $(x_1, \dots, x_n)$ --- реализация случайной выборки.
+\end{itemize}
+
+
+\paragraph{Размах выборки}
+
+\begin{equation}
+    R = M_{\max} - M_{\min}, \quad \text{где}
+\end{equation}
+\begin{itemize}
+    \item $M_{\max}$ --- максимальное значение выборки;
+    \item $M_{\min}$ --- минимальное значение выборки.
+\end{itemize}
+
+
+\paragraph{Оценка математического ожидания}
+
+\begin{equation}
+    \hat{\mu}(\vec{X}_n) = \overline{X}_n = \frac{1}{n} \sum_{i = 1}^{n} X_i\,.
+\end{equation}
+
+
+\paragraph{Выборочная дисперсия}
+
+\begin{equation}
+    \hat{\sigma}^2(\vec{X}_n) = \frac{1}{n} \sum_{i = 1}^{n}(X_i - \overline{X}_n)^2 = \frac{1}{n} \sum_{i = 1}^{n}X_i^2 - \overline{X}_n^2\,.
+\end{equation}
+
+
+\paragraph{Несмещённая оценка дисперсии}
+
+\begin{equation}
+    S^2(\vec{X}_n) = \frac{n}{n - 1}\hat{\sigma}^2 = \frac{1}{n - 1}\sum_{i = 1}^{n} (X_i - \overline{X}_n)^2\,.
+\end{equation}
+
+
+
+\subsection{Эмпирическая плотность и гистограмма}
+
+\begin{defn}
+    \emph{Эмпирической плотностью распределения случайной выборки $\vec{X}_n$} называют функцию
+    \begin{equation}
+        f_n(x) =
+        \begin{cases}
+            \frac{n_i}{n \, \Delta}, &x \in J_i,\; i = \overline{1, m};\\
+            0, &\text{иначе}.
+        \end{cases}, \quad \text{где}
+    \end{equation}
+    \begin{itemize}
+        \item $J_i,\, i = \overline{1; m}$, --- полуинтервал из $J = [x_{(1)}, x_{(n)}]$, где 
+        \begin{align}
+            &x_{(1)} = \min\{ x_1, \dots, x_n \}, &x_{(n)} = \max\{ x_1, \dots, x_n \};
+        \end{align}
+        при этом все полуинтервалы, кроме последнего, не содержат правую границу т.\,е.
+        \begin{align}
+            &J_i = [ x_{(1)} + (i-1)\Delta, x_{(i)} + i\Delta), \quad i = \overline{1, m-1};
+            \\
+            &J_m = [ x_{(1)} + (m-1)\Delta, x_{(1)} + m\Delta);
+        \end{align}
+        \item $m$ --- количество полуинтервалов интервала $J = [x_{(1)}, x_{(n)}]$;
+        \item $\Delta$ --- длина полуинтервала $J_i$, $i = \overline{1, m}$ равная
+        \begin{equation}
+            \Delta = \frac{x_{(n)} - x_{(1)}}{m} = \frac{|J|}{m};
+        \end{equation}
+        \item $n_i$ --- количество элементов выборки в полуинтервале $J_i$, $i = \overline{1, m}$;
+        \item $n$ --- количество элементов в выборке.
+
+    \end{itemize}
+\end{defn}
+
+\begin{defn}
+    График функции $f_n(x)$ называют гистограммой.
+\end{defn}
+
+\subsection{Эмпирическая функция распределения}
+
+\begin{itemize}
+    \item $\vec{X}_n = (X_1, \ldots, X_n)$ --- случайная выборка;
+    \item $\vec{x}_n = (x_1, \dots, x_n)$ --- реализация случайной выборки $\vec{X}_n$;
+    \item $n(x, \vec{x}_n)$ --- количество элементов выборки $\vec{x}_n$, которые меньше $x$.
+\end{itemize}
+
+\begin{defn}
+    \emph{Эмпирической функцией распределения} называют функцию
+    \begin{equation}
+        F_n\colon \Re \to \Re, \quad F_n(x) = \frac{n(x, \vec{x}_n)}{n}
+    \end{equation}
+\end{defn}
+\begin{rem}
+    $F_n(x)$ обладает всеми свойствами функции распределения. При этом она кусочно-постоянна и принимает значения 
+    \[
+        0, \frac{1}{n}, \frac{2}{n}, \ldots, \frac{(n-1)}{n}, 1
+    \]
+\end{rem}
+\begin{rem}
+    Если все элементы вектора $\vec{x}_n$ различны, то
+    \begin{equation}
+        F_n(x) = 
+        \begin{cases}
+            0, & x \leq x_{(1)}; \\
+            \frac{i}{n}, & x_{(i)} < x \leq x_{(i+1)},\; i = \overline{1, n-1}; \\
+            1, & x > x_{(n)}.
+        \end{cases}
+    \end{equation}
+\end{rem}
+\begin{rem}
+    Эмпирическая функция распределения позволяет интерпретировать выборку $\vec{x}_n$ как реализацию дискретной случайной величины $\widetilde{X}$ ряд распределения которой
+    \begin{center}
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabular}{| c || c | c | c |}
+            \hline
+            $\widetilde{X}$ & $x_{(1)}$ & \ldots & $x_{(n)}$ \\
+            \hline
+            $\Prob$ & $1/n$ & \ldots & $1/n$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    Это позволяет рассматривать числовые характеристики случайной величины $\widetilde{X}$ как приближённые значения числовых характеристик случайной величины $X$.
+\end{rem}
