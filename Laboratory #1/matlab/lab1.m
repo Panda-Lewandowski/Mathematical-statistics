@@ -2,7 +2,9 @@ function lab1()
     clear all;
     
     X = readFromFile(); 
-    X = sort(X);   
+    X = [X zeros(1,150) + 13];
+    
+    X = sort(X);
     
     minX = X(1);
     fprintf('Mmin = %s\n', num2str(minX));
@@ -25,14 +27,15 @@ function lab1()
     m = numberOfSubintervals(length(X));
     fprintf('m = %s\n ', num2str(m));
     
-    intervals(X, m);    
+    intervals(X, m);
     hold on;
     f(X, mu, sSqr);
-    figure;
     
-    F(X, mu, sSqr);
-    hold on;
+    figure;
     empiricF(X);
+    hold on;
+    F(X, mu, sSqr, m);
+        
 end
 
 function X = readFromFile()
@@ -106,19 +109,29 @@ function f(X, MX, DX)
     plot(X, Y);
 end
 
-function F(X, MX, DX)
-    Y = 1/2 * (1 + erf((X - MX) / sqrt(2*DX))); 
+function F(X, MX, DX, m)
+    R = X(end) - X(1);
+    delta = R/m;
     
-    plot(X, Y, 'r');
+    Xn = (MX - R): delta :(MX + R);
+    
+    Y = 1/2 * (1 + erf((Xn - MX) / sqrt(2*DX))); 
+    
+    
+    plot(Xn, Y, 'r');
 end
 
 function empiricF(X)
     n = length(X);
     Y = zeros(1, n);
-
+ 
     for i = 1:n
         Y(i) = i / n;
-    end    
+    end   
     
-    stairs(X, Y), grid;
+    [yy, xx] = ecdf(X);
+    yy(length(yy)+1) = 1;
+    xx(length(xx)+1) = 20;
+    
+    stairs(xx, yy);
 end
