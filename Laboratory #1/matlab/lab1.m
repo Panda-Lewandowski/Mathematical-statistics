@@ -29,7 +29,7 @@ function lab1()
     
     intervals(X, m);
     hold on;
-    f(X, mu, sSqr);
+    f(X, mu, sSqr, m);
     
     figure;
     empiricF(X);
@@ -78,10 +78,13 @@ function sSqr = unbiasedSampleVariance(X)
 end
 
 function intervals(X, m)
-    count = zeros(1, m+1);  
+    count = zeros(1, m+2);  
     delta = (X(end) - X(1)) / m;
     
     J = X(1):delta:X(end);
+    fprintf('%d\n', X(end));
+    J(length(J)+1) = 20;
+    
     j = 1;
     n = length(X);
     
@@ -96,17 +99,24 @@ function intervals(X, m)
     end
     fprintf('[%2.2f;%2.2f]\n', J(m), J(m + 1));
     
-    Xbuf = count(1:m+1);
-    for i = 1:m+1
+    Xbuf = count(1:m+2);
+    for i = 1:m+2
         Xbuf(i) = count(i) / (n*delta); 
     end
-    
+   
     stairs(J, Xbuf), grid;
 end
 
-function f(X, MX, DX)
-    Y = 1 / sqrt(2*pi*DX) * exp( -power((X - MX), 2) / (2*DX));
-    plot(X, Y);
+function f(X, MX, DX, m)
+    R = X(end) - X(1);
+    delta = R/m;
+    Sigma = sqrt(DX);
+    
+    Xn = (MX - R): delta/50 :(MX + R);
+    Xn(length(Xn)+1) = 20;
+    Y = normpdf(Xn, MX, Sigma);
+    
+    plot(Xn, Y);
 end
 
 function F(X, MX, DX, m)
@@ -121,14 +131,7 @@ function F(X, MX, DX, m)
     plot(Xn, Y, 'r');
 end
 
-function empiricF(X)
-    n = length(X);
-    Y = zeros(1, n);
- 
-    for i = 1:n
-        Y(i) = i / n;
-    end   
-    
+function empiricF(X)  
     [yy, xx] = ecdf(X);
     yy(length(yy)+1) = 1;
     xx(length(xx)+1) = 20;
