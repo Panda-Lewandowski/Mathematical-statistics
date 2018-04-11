@@ -2,7 +2,61 @@
 
 \section{Задача №3. Метод максимального правдоподобия}
 
-\paragraph{Условие.}
+\paragraph{Условие.} С использование метода максимального правдоподобия для случайной выборки $\vec{X} = (X_1, \dots, X_n)$ из генеральной совокупности $X$ найти точечные оценки параметров заданного закона распределения. Вычислить выборочные значения найденных оценок для выборки $\vec{x}_n = (x_1, \dots, x_5)$.
+
+\[
+f_{X}(x)= \frac{\theta^3}{2!}x^2 e^{-\theta x},~x > 0;
+\]
+
+\[
+\vec{x}_5 = (0.4, 1.5, 0.8, 0.7, 2.7).
+\]
+
 \paragraph{Решение.}
 \noindent
-\paragraph{Ответ.} $\displaystyle\theta =$.
+Как и в предыдущей задаче, мы имеем дело с гамма-распределением  с параметрами $\lambda= \frac{1}{\theta},~\alpha=3$.
+
+\[
+f_{X}(x)=x^2\frac{e^{-\theta x}\theta^3}{\Gamma(3)},~x > 0.
+\]
+
+Отсюда следует, что $X \sim \Gamma(3, \frac{1}{\theta})$.
+
+Определим функцию правдоподобия:
+
+\[
+L(\vec{X_n}; \theta) =  \frac{\theta^3}{\Gamma(3)}\prod_{i = 1}^{n} \left(X_i^2 e^{-\theta X_i}\right). \eqno(1)
+\]
+
+Пролагарифмируем (1):
+
+\[
+\ln L(\vec{x_n}; \theta) = \ln \left( \frac{\theta^3}{\Gamma(3)}\right) + \ln \left(\prod_{i = 1}^{n} \left(x_i^2 e^{-\theta x_i}\right)\right) = 3\ln\theta - \ln2 + \ln \left(e^{-\theta \sum_{i = 1}^n x_i} \prod_{i = 1}^{n} x_i^2\right) = 
+\]
+\[
+= 3\ln\theta - \ln2 + \ln \left(e^{-\theta \sum_{i = 1}^n x_i} \right) + \ln \prod_{i = 1}^{n} x_i^2 =  3\ln\theta - \ln2 + \theta \sum_{i = 1}^n x_i  + \ln \prod_{i = 1}^{n} x_i^2.  \eqno(2)
+\]
+
+Продифференцируем (2) и приравняем к нулю:
+
+\[
+\frac{\partial \ln L(\vec{x_n}; \theta)}{\partial \theta} = 0;
+\]
+
+\[
+\frac{\partial \ln L(\vec{x_n}; \theta)}{\partial \theta} = \frac{3}{\theta} - \sum_{i = 1}^n x_i = 0.
+\]
+
+Отсюда 
+
+\[
+\theta = \frac{3}{\sum_{i = 1}^n x_i}.
+\]
+
+Для  $\vec{x}_5 = (0.4, 1.5, 0.8, 0.7, 2.7)$ получаем:
+
+\[
+\theta = \frac{3}{0.4 + 1.5 + 0.8 + 0.7 + 2.7} = \frac{30}{61}.
+\]
+
+\paragraph{Ответ.} $\theta = \frac{30}{61}$.
