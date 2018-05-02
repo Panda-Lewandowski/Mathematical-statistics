@@ -41,8 +41,7 @@ function lw2()
     plot(N, Sl, 'b');
     
     Sh = varArray.*(N - 1)./chi2inv(alpha, N - 1);
-    plot(N, Sh, 'r');
-    
+    plot(N(4:length(N)), Sh(4:length(Sh)), 'r');
     grid on;
     hold off;
     fprintf('sigma^2_low = %.2f\n', Sl(end));
