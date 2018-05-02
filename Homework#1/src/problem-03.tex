@@ -25,16 +25,16 @@ f_{X}(x)=x^2\frac{e^{-\theta x}\theta^3}{\Gamma(3)},~x > 0.
 Определим функцию правдоподобия:
 
 \[
-L(\vec{X_n}; \theta) =  \frac{\theta^3}{\Gamma(3)}\prod_{i = 1}^{n} \left(X_i^2 e^{-\theta X_i}\right) \eqno(1)
+L(\vec{X_n}; \theta) =  \frac{\theta^{3n}}{\Gamma(3)^n}\prod_{i = 1}^{n} \left(X_i^2 e^{-\theta X_i}\right) \eqno(1)
 \]
 
 Пролагарифмируем (1):
 
 \[
-\ln L(\vec{x_n}; \theta) = \ln \left( \frac{\theta^3}{\Gamma(3)}\right) + \ln \left(\prod_{i = 1}^{n} \left(x_i^2 e^{-\theta x_i}\right)\right) = 3\ln\theta - \ln2 + \ln \left(e^{-\theta \sum_{i = 1}^n x_i} \prod_{i = 1}^{n} x_i^2\right) = 
+\ln L(\vec{x_n}; \theta) = \ln \left( \frac{\theta^{3n}}{\Gamma(3)^n}\right) + \ln \left(\prod_{i = 1}^{n} \left(x_i^2 e^{-\theta x_i}\right)\right) = 3n\ln\theta - n\ln2 + \ln \left(e^{-\theta \sum_{i = 1}^n x_i} \prod_{i = 1}^{n} x_i^2\right) = 
 \]
 \[
-= 3\ln\theta - \ln2 + \ln \left(e^{-\theta \sum_{i = 1}^n x_i} \right) + \ln \prod_{i = 1}^{n} x_i^2 =  3\ln\theta - \ln2 + \theta \sum_{i = 1}^n x_i  + \ln \prod_{i = 1}^{n} x_i^2.  \eqno(2)
+= 3n\ln\theta - n\ln2 + \ln \left(e^{-\theta \sum_{i = 1}^n x_i} \right) + \ln \prod_{i = 1}^{n} x_i^2 =  3n\ln\theta - n\ln2 + \theta \sum_{i = 1}^n x_i  + \ln \prod_{i = 1}^{n} x_i^2.  \eqno(2)
 \]
 
 Продифференцируем (2) и приравняем к нулю:
@@ -44,19 +44,19 @@ L(\vec{X_n}; \theta) =  \frac{\theta^3}{\Gamma(3)}\prod_{i = 1}^{n} \left(X_i^2 
 \]
 
 \[
-\frac{\partial \ln L(\vec{x_n}; \theta)}{\partial \theta} = \frac{3}{\theta} - \sum_{i = 1}^n x_i = 0.
+\frac{\partial \ln L(\vec{x_n}; \theta)}{\partial \theta} = \frac{3n}{\theta} - \sum_{i = 1}^n x_i = 0.
 \]
 
 Отсюда 
 
 \[
-\theta = \frac{3}{\sum_{i = 1}^n x_i}.
+\theta = \frac{3n}{\sum_{i = 1}^n x_i}.
 \]
 
 Для  $\vec{x}_5 = (0.4, 1.5, 0.8, 0.7, 2.7)$ получаем:
 
 \[
-\theta = \frac{3}{0.4 + 1.5 + 0.8 + 0.7 + 2.7} = \frac{30}{61}.
+\theta = \frac{3 * 5}{0.4 + 1.5 + 0.8 + 0.7 + 2.7} \approx 2.46.
 \]
 
-\paragraph{Ответ.} $\theta = \frac{30}{61}$.
+\paragraph{Ответ.} $\theta \approx 2.46$.
