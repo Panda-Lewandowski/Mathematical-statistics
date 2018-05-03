@@ -2,7 +2,8 @@ function lw2()
     clear all;
 
     X = readFromFile();
-    N = 1:40;   
+    %N = 1:40; 
+    N = 10:120;
     
     gamma = 0.9;
     alpha = (1 - gamma)/2;
@@ -41,7 +42,7 @@ function lw2()
     plot(N, Sl, 'b');
     
     Sh = varArray.*(N - 1)./chi2inv(alpha, N - 1);
-    plot(N(4:length(N)), Sh(4:length(Sh)), 'r');
+    plot(N, Sh, 'r');
     grid on;
     hold off;
     fprintf('sigma^2_low = %.2f\n', Sl(end));
